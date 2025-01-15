@@ -1,12 +1,34 @@
+"use client"
+
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 
+const useTypewriter = (text: string, speed = 20) => {
+  const [index, setIndex] = useState(0);
+  const displayText = useMemo(() => text.slice(0, index), [index]);
+  useEffect(() => {
+    if (index >= text.length)
+      return;
+      
+    const timeoutId = setTimeout(() => {
+      setIndex(i => i + 1);
+    }, speed);
 
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [index, text, speed]);
+
+  return displayText;
+};
 
 export default function Home() {
+  const text = useTypewriter("Meet Shreddy: Your Virtual Guitar Hero!", 80);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-lg md:text-2xl mb-4 font-bold">Meet Shreddy: Your Virtual Guitar Hero!</h1>
+        <h1 className="min-h-2 text-lg md:text-3xl mb-4 font-bold"  style={{ minHeight: "1.2em" }}>{text}</h1>
         {/* Main shreddy image */}
         <Image
           className="rounded-xl mx-auto"
