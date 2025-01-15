@@ -7,7 +7,7 @@ const client = new OpenAI({
 export async function GET(request: Request) {
     try {
         const chatCompletion = await client.chat.completions.create({
-            messages: [{ role: 'user', content: 'Say this is a test' }],
+            messages: [{ role: 'user', content: 'Say this is a test and output a random number from 1-10' }],
             model: 'gpt-4o',
         });
 
