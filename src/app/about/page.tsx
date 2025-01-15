@@ -5,10 +5,11 @@ export default function About() {
         <div className="flex row">
             <div className="hidden md:block">
             <Image
+                className="min-h-lvh"
                 src="/guitar-studio.png"
                 alt="Background Image"
                 width={700}
-                height={800}
+                height={700}
                 priority
             />
             </div>
