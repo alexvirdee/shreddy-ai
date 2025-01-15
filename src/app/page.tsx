@@ -5,7 +5,8 @@ import Image from "next/image";
 
 const useTypewriter = (text: string, speed = 20) => {
   const [index, setIndex] = useState(0);
-  const displayText = useMemo(() => text.slice(0, index), [index]);
+  const displayText = useMemo(() => text.slice(0, index), [index, text]);
+
   useEffect(() => {
     if (index >= text.length)
       return;
@@ -23,7 +24,7 @@ const useTypewriter = (text: string, speed = 20) => {
 };
 
 export default function Home() {
-  const text = useTypewriter("Meet Shreddy: Your Virtual Guitar Hero!", 80);
+  const text = useTypewriter("Meet Shreddy: Your Virtual Guitar Hero!", 100);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
