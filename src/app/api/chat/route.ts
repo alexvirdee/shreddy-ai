@@ -38,8 +38,10 @@ export async function POST(request: Request) {
             messages
         });
 
+        const reply = chatCompletion.choices[0].message.content
+
         // Return the response from OpenAI
-        return new Response(JSON.stringify(chatCompletion), {
+        return new Response(JSON.stringify(reply), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });
