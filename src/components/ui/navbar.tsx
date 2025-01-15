@@ -8,7 +8,6 @@ import { Menu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "@/components/ui/button";
-import { nanoid } from "nanoid";
 import Link from "next/link";
 
 const Navbar = () => {
