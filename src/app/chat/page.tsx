@@ -20,6 +20,19 @@ export default function Chat() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
+    // Load messages from localStorage on mount
+    useEffect(() => {
+        const storedMessages = localStorage.getItem("shreddyChatMessages");
+        if (storedMessages) {
+            setMessages(JSON.parse(storedMessages));
+        }
+    }, []);
+
+    // Save messages to localStorage whenever they change
+    useEffect(() => {
+        localStorage.setItem("shreddyChatMessages", JSON.stringify(messages));
+    }, [messages])
+
     const sendMessage = async () => {
         if (!input.trim()) return;
 
@@ -83,9 +96,9 @@ export default function Chat() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
-                          sendMessage();
+                            sendMessage();
                         }
-                      }}
+                    }}
                 />
                 <Button
                     className="bg-blue-600 hover:bg-blue-700"
@@ -98,7 +111,11 @@ export default function Chat() {
                 <div className="mt-2">
                     <Button
                         className="bg-red-600 hover:bg-red-700 w-full"
-                        onClick={() => setMessages([])}
+                        onClick={() => {
+                            setMessages([])
+                            localStorage.removeItem("shreddyChatMessages");
+                        }
+                        }
                     >
                         Clear Chat
                     </Button>
