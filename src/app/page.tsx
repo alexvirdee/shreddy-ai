@@ -57,10 +57,10 @@ export default function Home() {
           X
         </a>
       </footer>
-      {/* Spotify embed song on bottom right of site */}
-      <div className="fixed bottom-1 right-4 text-white rounded-full flex items-center justify-center">
+      {/* TODO: Spotify embed song on bottom right of site */}
+      {/* <div className="fixed bottom-1 right-4 text-white rounded-full flex items-center justify-center">
       <iframe src="https://open.spotify.com/embed/track/08mG3Y1vljYA6bvDt4Wqkj?utm_source=generator" width="100%" height="200" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
+      </div> */}
     </div>
   );
 }
