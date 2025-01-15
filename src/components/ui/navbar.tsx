@@ -13,7 +13,7 @@ import Link from "next/link";
 const Navbar = () => {
     return (
         <Card className="bg-card py-3 px-4 border-0 flex items-center justify-between gap-6 rounded-2xl rounded-bl-none rounded-br-none">
-          <div className="py-2 text-md font-bold">ShreddyAI</div> 
+            <div className="py-2 text-md font-bold">ShreddyAI</div>
             <ul className="hidden md:flex items-center gap-10 text-card-foreground">
                 <li className="text-primary font-medium">
                     <Link href="/">Home</Link>
@@ -34,10 +34,10 @@ const Navbar = () => {
 
                         <DropdownMenuContent align="end">
                             <DropdownMenuItem>
-                                <a href="#home">Home</a>
+                                <Link href="/">Home</Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <a href="#features">About</a>
+                                <Link href="/about">About</Link>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
