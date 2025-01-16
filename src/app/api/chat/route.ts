@@ -11,7 +11,7 @@ const client = new OpenAI({
 
 
 export async function POST(request: Request) {
-    const { message } = await request.json();
+    const { messages } = await request.json();
 
     const systemMessage: Message = {
         role: 'system',
@@ -25,19 +25,19 @@ export async function POST(request: Request) {
         If a user asks for an exercise or riff, respond with a short, easy-to-read tab. 
         `
     }
-    
-    const chatHistory: never[] = []; // Fetch or store previous messages dynamically 
 
-    const messages: Message[] = [
-        systemMessage,
-        ...chatHistory,
-        { role: 'user', content: message }
-    ]
+     // Map messages to the correct format
+     const formattedMessages: Message[] = messages.map((msg: any) => ({
+        role: msg.sender === 'user' ? 'user' : 'assistant',
+        content: msg.text,
+    }));
+    
+    const chatHistory: Message[] = [systemMessage, ...formattedMessages]; // Fetch or store previous messages dynamically 
 
     try {
         const chatCompletion = await client.chat.completions.create({
             model: 'gpt-4o',
-            messages,
+            messages: chatHistory,
             temperature: 1.1
         });
 

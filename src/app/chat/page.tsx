@@ -38,7 +38,8 @@ export default function Chat() {
 
         // Add user message to the chat
         const newMessage: Message = { sender: "user", text: input };
-        setMessages((prev) => [...prev, newMessage]);
+        const updatedMessages = [...messages, newMessage]; // Include all previous messages so Shreddy understands the conversation history
+        setMessages(updatedMessages);
 
         // Clear the input field
         setInput("");
@@ -50,7 +51,7 @@ export default function Chat() {
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: input }),
+                body: JSON.stringify({ messages: updatedMessages }),
             });
 
             const data = await response.json();
