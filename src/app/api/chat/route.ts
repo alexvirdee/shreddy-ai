@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     }
 
      // Map messages to the correct format
-     const formattedMessages: Message[] = messages.map((msg: any) => ({
+     const formattedMessages: Message[] = messages.map((msg: { sender: string, text: string }) => ({
         role: msg.sender === 'user' ? 'user' : 'assistant',
         content: msg.text,
     }));
