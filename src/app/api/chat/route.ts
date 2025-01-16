@@ -25,13 +25,6 @@ export async function POST(request: Request) {
         If a user asks for an exercise or riff, respond with a short, easy-to-read tab. 
         `
     }
-
-    const randomOpenings = [
-        "Alright, here's what I think:",
-        "Let's shred through this together:",
-        "Got it! Here's the deal:",
-    ];
-    const opening = randomOpenings[Math.floor(Math.random() * randomOpenings.length)];
     
     const chatHistory: never[] = []; // Fetch or store previous messages dynamically 
 
