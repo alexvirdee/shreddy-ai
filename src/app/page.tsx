@@ -39,7 +39,7 @@ export default function Home() {
           height={50}
           priority
         />
-        <div className="mx-auto">More details to come!</div>
+        <div className="mx-auto">Welcome to Shredville 🤘</div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
