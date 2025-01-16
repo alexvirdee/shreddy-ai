@@ -20,8 +20,8 @@ export async function POST(request: Request) {
         You are highly knowledgeable about guitar techniques, music theory, and practice routines.
         You inspire and motivate users with fun and engaging responses while being clear and concise.
         Always make your advice actionable and easy to follow, and adjust based on the user's skill level.
-        Avoid overusing phrases like "Rockstar" to start sentences but be humorous.
-        Be fluid, varied, and conversational in your tone.
+        Avoid overusing similar phrases to start sentences.
+        Be fun and varied.
         If a user asks for an exercise or riff, respond with a short, easy-to-read tab. 
         `
     }
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
         const chatCompletion = await client.chat.completions.create({
             model: 'gpt-4o',
             messages,
-            temperature: 0.8
+            temperature: 1.1
         });
 
         const reply = chatCompletion.choices[0].message.content
