@@ -67,60 +67,79 @@ export default function Chat() {
     }
 
     return (
-        <div className="flex flex-col max-w-lg mx-auto bg-gray-800 text-white p-4 rounded-lg shadow-lg">
-            {/* Chat messages */}
-            <div className="flex-1 overflow-y-auto max-h-120 mb-4 space-y-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800 scrollbar-track-transparent">
+        <div className="mx-auto mt-6 bg-white p-6 rounded-lg border border-gray-300 w-[440px] h-[634px] flex flex-col">
+            {/* Messages Container */}
+            <div className="flex-1 overflow-y-auto pr-2">
                 {messages.map((message, index) => (
                     <div
                         key={index}
-                        className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+                        className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"} my-2`}
                     >
-                        <div
-                            className={`px-4 py-2 rounded-lg max-w-xs ${message.sender === "user" ? "bg-blue-600" : "bg-green-600"
-                                }`}
-                        >
-                            {message.text}
+                        <div className="flex items-center gap-3">
+                            {/* Avatar */}
+                            <div className="rounded-full bg-gray-100 border p-1">
+                                {message.sender === "user" ? (
+                                    <svg stroke="none" fill="black" strokeWidth="0"
+                                        viewBox="0 0 16 16" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z">
+                                        </path>
+                                    </svg>
+                                ) : (
+                                    <svg stroke="none" fill="black" strokeWidth="1.5"
+                                        viewBox="0 0 24 24" aria-hidden="true" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                                        <path strokeLinecap="round" strokeLinejoin="round"
+                                            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z">
+                                        </path>
+                                    </svg>
+                                )}
+                            </div>
+                            {/* Message Text */}
+                            <div>
+                                <p className="font-bold text-gray-700">
+                                    {message.sender === "user" ? "You" : "Shreddy"}
+                                </p>
+                                <p className="text-gray-600 text-sm">{message.text}</p>
+                            </div>
                         </div>
                     </div>
                 ))}
-                {isTyping && <div className="text-gray-400">Shreddy is typing...</div>}
-                <div ref={messagesEndRef} />
+                <div ref={messagesEndRef}></div>
             </div>
 
-            {/* Input and send button */}
-            <div className="flex items-center space-x-2">
-                <Input
-                    className="flex-1 bg-gray-700 text-white"
-                    placeholder="Ask Shreddy something..."
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                            sendMessage();
-                        }
+            {isTyping && <p className="text-sm text-gray-500 mt-2">Shreddy is typing...</p>}
+
+            {/* Input Field */}
+            <div className="mt-4">
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        sendMessage();
                     }}
-                />
-                <Button
-                    className="bg-blue-600 hover:bg-blue-700"
-                    onClick={sendMessage}
+                    className="flex items-center gap-2"
                 >
-                    Send
-                </Button>
-            </div>
-            {messages.length > 0 ? (
-                <div className="mt-2">
+                    <Input
+                        className="flex-1 "
+                        placeholder="Ask Shreddy something..."
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                    />
+                    <Button type="submit" className="bg-black text-white hover:bg-gray-800">
+                        Send
+                    </Button>
+                </form>
+                {messages.length > 0 && (
                     <Button
-                        className="bg-red-600 hover:bg-red-700 w-full"
+                        className="mt-4 bg-red-600 hover:bg-red-700 w-full"
                         onClick={() => {
-                            setMessages([])
+                            setMessages([]);
                             localStorage.removeItem("shreddyChatMessages");
-                        }
-                        }
+                        }}
                     >
                         Clear Chat
                     </Button>
-                </div>
-            ) : <></>}
+                )}
+            </div>
         </div>
     )
 }
