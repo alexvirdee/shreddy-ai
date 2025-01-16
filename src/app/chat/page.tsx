@@ -67,7 +67,7 @@ export default function Chat() {
     }
 
     return (
-        <div className="mx-auto mt-6 bg-white p-6 rounded-lg border border-gray-300 w-full md:w-[440px] h-[348px] md:h-[634px] flex flex-col">
+        <div className="mx-auto mt-6 bg-white text-black p-6 rounded-lg border border-gray-300 w-full md:w-[440px] h-[348px] md:h-[634px] flex flex-col">
             {/* Messages Container */}
             <div className="flex-1 overflow-y-auto pr-2">
                 {messages.map((message, index) => (
