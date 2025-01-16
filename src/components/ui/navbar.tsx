@@ -24,6 +24,9 @@ const Navbar = () => {
                 <li>
                     <Link href="/chat">Chat</Link>
                 </li>
+                <li>
+                    <Link href="/tutorials">Tutorials</Link>
+                </li>
             </ul>
 
             <div className="flex items-center">
@@ -44,6 +47,9 @@ const Navbar = () => {
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                                 <Link href="/chat">Chat</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                                <Link href="/tutorials">Tutorials</Link>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
