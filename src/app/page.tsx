@@ -3,6 +3,9 @@
 import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 
+import SpotifyPlayer from "@/components/spotify/player";
+
+
 const useTypewriter = (text: string, speed = 20) => {
   const [index, setIndex] = useState(0);
   const displayText = useMemo(() => text.slice(0, index), [index, text]);
@@ -25,6 +28,15 @@ const useTypewriter = (text: string, speed = 20) => {
 
 export default function Home() {
   const text = useTypewriter("Meet Shreddy: Your Virtual Guitar Hero!", 100);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://sdk.scdn.co/spotify-player.js";
+    script.async = true;
+    document.body.appendChild(script);
+  
+    script.onload = () => console.log("Spotify Web Playback SDK Loaded");
+  }, []);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -62,6 +74,7 @@ export default function Home() {
       {/* <div className="fixed bottom-1 right-4 text-white rounded-full flex items-center justify-center">
       <iframe src="https://open.spotify.com/embed/track/08mG3Y1vljYA6bvDt4Wqkj?utm_source=generator" width="100%" height="200" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div> */}
+      <SpotifyPlayer />
     </div>
   );
 }

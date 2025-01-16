@@ -31,6 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      </head>
       <body
         className={`${roboto.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
